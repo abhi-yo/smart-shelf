@@ -15,6 +15,9 @@ const parser = serialPort.pipe(new ReadlineParser({ delimiter: "\n" }));
 // Middleware to parse JSON
 app.use(express.json());
 
+// Serve static files from the "public" directory
+app.use(express.static("public"));
+
 // Connect to MongoDB
 mongoose
   .connect("mongodb://localhost/smartshelf")
@@ -33,9 +36,14 @@ const rfidSchema = new mongoose.Schema({
 
 const Rfid = mongoose.model("Rfid", rfidSchema);
 
-// Endpoint to test the server
-app.get("/", (req, res) => {
-  res.send("RFID Reader Connected!");
+// Endpoint to get all saved RFID tags
+app.get("/rfid-tags", async (req, res) => {
+  try {
+    const rfidTags = await Rfid.find().sort({ timestamp: -1 }); // Sort by latest first
+    res.json(rfidTags);
+  } catch (err) {
+    res.status(500).json({ message: "Error retrieving RFID tags" });
+  }
 });
 
 // Helper function to extract UID from RFID data

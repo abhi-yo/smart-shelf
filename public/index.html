@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RFID Tags</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      h1 {
+        color: #333;
+      }
+      #rfid-list {
+        list-style-type: none;
+        padding: 0;
+      }
+      li {
+        background-color: #f4f4f4;
+        margin: 5px 0;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>RFID Tags</h1>
+    <ul id="rfid-list">
+      <!-- RFID tags will be displayed here -->
+    </ul>
+
+    <script>
+      // Fetch RFID tags from the server
+      async function fetchRFIDTags() {
+        const response = await fetch("/rfid-tags");
+        const rfidTags = await response.json();
+
+        const list = document.getElementById("rfid-list");
+        list.innerHTML = ""; // Clear any existing tags
+
+        // Loop through the tags and add them to the list
+        rfidTags.forEach((tag) => {
+          const listItem = document.createElement("li");
+          listItem.textContent = `UID: ${tag.tagId} (Scanned on: ${new Date(
+            tag.timestamp
+          ).toLocaleString()})`;
+          list.appendChild(listItem);
+        });
+      }
+
+      // Fetch the tags when the page loads
+      window.onload = fetchRFIDTags;
+    </script>
+  </body>
+</html>
