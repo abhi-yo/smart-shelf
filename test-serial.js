@@ -39,7 +39,7 @@ const Rfid = mongoose.model("Rfid", rfidSchema);
 // Endpoint to get all saved RFID tags
 app.get("/rfid-tags", async (req, res) => {
   try {
-    const rfidTags = await Rfid.find().sort({ timestamp: -1 }); // Sort by latest first
+    const rfidTags = await Rfid.find().sort({ timestamp: -1 });
     res.json(rfidTags);
   } catch (err) {
     res.status(500).json({ message: "Error retrieving RFID tags" });
@@ -50,7 +50,7 @@ app.get("/rfid-tags", async (req, res) => {
 function extractUID(data) {
   const uidMatch = data.match(/Card UID:\s([A-F0-9\s]+)/);
   if (uidMatch && uidMatch[1]) {
-    return uidMatch[1].trim(); // Extract and return the UID
+    return uidMatch[1].trim();
   }
   return null;
 }
