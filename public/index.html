@@ -6,22 +6,36 @@
     <title>RFID Tags</title>
     <style>
       body {
-        font-family: Arial, sans-serif;
-        margin: 20px;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f0f2f5;
+        color: #333;
+        margin: 0;
+        padding: 20px;
       }
       h1 {
-        color: #333;
+        color: #012e5d;
+        font-size: 2em;
+        margin-bottom: 20px;
+        text-align: center;
       }
       #rfid-list {
         list-style-type: none;
         padding: 0;
+        max-width: 800px;
+        margin: 0 auto;
       }
       li {
-        background-color: #f4f4f4;
-        margin: 5px 0;
-        padding: 10px;
+        background-color: #ffffff;
+        margin: 10px 0;
+        padding: 15px;
         border: 1px solid #ddd;
-        border-radius: 5px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s, transform 0.3s;
+      }
+      li:hover {
+        background-color: #e9ecef;
+        transform: translateY(-2px);
       }
     </style>
   </head>
@@ -32,15 +46,14 @@
     </ul>
 
     <script>
-      // Fetch RFID tags from the server
       async function fetchRFIDTags() {
         const response = await fetch("/rfid-tags");
         const rfidTags = await response.json();
 
         const list = document.getElementById("rfid-list");
-        list.innerHTML = ""; // Clear any existing tags
+        list.innerHTML = ""; // clear any existing tags
 
-        // Loop through the tags and add them to the list
+        // adding tags to list
         rfidTags.forEach((tag) => {
           const listItem = document.createElement("li");
           listItem.textContent = `UID: ${tag.tagId} (Scanned on: ${new Date(
@@ -50,7 +63,7 @@
         });
       }
 
-      // Fetch the tags when the page loads
+      // fetch the tags when the page loads
       window.onload = fetchRFIDTags;
     </script>
   </body>
