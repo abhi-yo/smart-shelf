@@ -105,7 +105,7 @@ We welcome contributions! 🎉 If you have suggestions for improvements or find 
 4. Push to the branch (`git push origin feature/YourFeature`).
 5. Open a pull request.
 
-Please check out the [CONTRIBUTING.md](link-to-contributing-md) file for more details.
+Please check out the [CONTRIBUTING.md](https://github.com/footcricket05/smart-shelf/blob/main/CONTRIBUTING.md) file for more details.
 
 ## 🧪 Testing
 
