@@ -95,14 +95,6 @@ Once the application is running:
 - **RFID Integration**: When items are removed or added to the shelf, the RFID readers will capture this data and automatically update the stock levels in the system.
 - **Alerts**: Get real-time notifications when items are running low or need restocking.
 
-## 📸 Screenshots
-
-### Admin Dashboard
-![Dashboard Screenshot](link-to-dashboard-screenshot)
-
-### Real-Time Monitoring
-![Monitoring Screenshot](link-to-monitoring-screenshot)
-
 ## 🤝 Contributing
 
 We welcome contributions! 🎉 If you have suggestions for improvements or find any bugs, feel free to create a pull request or open an issue.
