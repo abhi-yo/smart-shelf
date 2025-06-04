@@ -5,28 +5,37 @@ const { saveRfidTag } = require("./rfidService");
 
 // Initialize SerialPort
 const initSerialPort = () => {
-  const serialPort = new SerialPort({ path: portPath, baudRate: baudRate });
-  const parser = serialPort.pipe(new ReadlineParser({ delimiter: "\n" }));
+  if (portPath === 'none') {
+    console.log('Serial port disabled via environment variable');
+    return;
+  }
 
-  serialPort.on("open", () => {
-    console.log(`Serial port ${portPath} is open`);
-  });
+  try {
+    const serialPort = new SerialPort({ path: portPath, baudRate: baudRate });
+    const parser = serialPort.pipe(new ReadlineParser({ delimiter: "\n" }));
 
-  serialPort.on("error", (err) => {
-    if (err.message.includes("busy")) {
-      console.error(
-        "Serial port is already in use. Close other programs using it."
-      );
-    } else {
-      console.error(`Serial port error: ${err.message}`);
-    }
-  });
+    serialPort.on("open", () => {
+      console.log(`Serial port ${portPath} is open`);
+    });
 
-  // Listen for RFID readings from Arduino
-  parser.on("data", (data) => {
-    console.log(`RFID Tag: ${data.trim()}`);
-    saveRfidTag(data);
-  });
+    serialPort.on("error", (err) => {
+      if (err.message.includes("busy")) {
+        console.error(
+          "Serial port is already in use. Close other programs using it."
+        );
+      } else {
+        console.error(`Serial port error: ${err.message}`);
+      }
+    });
+
+    // Listen for RFID readings from Arduino
+    parser.on("data", (data) => {
+      console.log(`RFID Tag: ${data.trim()}`);
+      saveRfidTag(data);
+    });
+  } catch (error) {
+    console.error(`Failed to initialize serial port: ${error.message}`);
+  }
 };
 
 module.exports = { initSerialPort };

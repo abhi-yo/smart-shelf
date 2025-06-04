@@ -13,7 +13,7 @@ Please adhere to the project's [Code of Conduct](link-to-code-of-conduct). All c
 First, fork the repository to your GitHub account.
 
 ```bash
-git clone https://github.com/footcricket05/smart-shelf.git
+git clone https://github.com/abhi-yo/smart-shelf.git
 cd smart-shelf
 ```
 
@@ -60,7 +60,7 @@ If you find any bugs or issues, feel free to open an issue on GitHub with detail
 
 ### Steps to Report an Issue:
 
-1. Navigate to the **[Issues](https://github.com/footcricket05/smart-shelf/issues)** tab.
+1. Navigate to the **[Issues](https://github.com/abhi-yo/smart-shelf/issues)** tab.
 2. Check if the issue has already been reported.
 3. If not, create a new issue with the following details:
    - A clear title and description.
@@ -91,23 +91,6 @@ If you are adding a new feature, please ensure:
 3. Documentation is updated accordingly.
 
 For significant changes or proposals, it’s a good idea to open an issue to discuss your idea with the maintainers before investing time in development.
-
----
-
-## 💡 Style Guide
-
-Follow these coding conventions when contributing:
-
-- **JavaScript**:
-  - Use 2 spaces for indentation.
-  - Use meaningful variable and function names.
-  - Write comments where necessary.
-  
-- **CSS**:
-  - Follow BEM (Block Element Modifier) convention for naming classes.
-  
-- **HTML**:
-  - Ensure accessibility standards are followed.
 
 ---
 
